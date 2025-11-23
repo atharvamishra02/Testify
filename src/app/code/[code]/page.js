@@ -44,7 +44,7 @@ export default function StatsPage() {
     try {
       const res = await fetch(`/api/links/${code}`, { method: 'DELETE' });
       if (res.ok) {
-        router.push('/');
+        router.push('/dashboard');
       }
     } catch (err) {
       alert('Failed to delete link');
@@ -57,7 +57,7 @@ export default function StatsPage() {
     return (
       <div className="container mx-auto px-4 py-20 text-center">
         <h1 className="text-3xl font-bold text-red-400 mb-4">{error}</h1>
-        <Link href="/" className="text-blue-400 hover:underline">
+        <Link href="/dashboard" className="text-blue-400 hover:underline">
           Go back to Dashboard
         </Link>
       </div>
@@ -66,7 +66,7 @@ export default function StatsPage() {
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-3xl">
-      <Link href="/" className="text-gray-400 hover:text-white mb-8 inline-block transition-colors">
+      <Link href="/dashboard" className="text-gray-400 hover:text-white mb-8 inline-block transition-colors">
         &larr; Back to Dashboard
       </Link>
 

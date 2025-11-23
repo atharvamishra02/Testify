@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 export default function Home() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -18,11 +19,12 @@ export default function Home() {
     try {
       const res = await fetch('/api/auth/me');
       if (res.ok) {
-        // User is logged in, redirect to dashboard
-        router.push('/dashboard');
+        // User is logged in, show dashboard button
+        setIsAuthenticated(true);
       }
     } catch (error) {
       // User not logged in, stay on landing page
+      setIsAuthenticated(false);
     }
   };
 
@@ -75,18 +77,29 @@ export default function Home() {
               TinyLink
             </div>
             <div className="flex gap-4">
-              <Link
-                href="/login"
-                className="px-6 py-2.5 text-white font-medium hover:text-blue-300 transition-colors"
-              >
-                Login
-              </Link>
-              <Link
-                href="/register"
-                className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
-              >
-                Get Started
-              </Link>
+              {isAuthenticated ? (
+                <Link
+                  href="/dashboard"
+                  className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                >
+                  Go to Dashboard
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="px-6 py-2.5 text-white font-medium hover:text-blue-300 transition-colors"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                  >
+                    Get Started
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </header>

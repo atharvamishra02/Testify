@@ -4,6 +4,7 @@ A modern, secure URL shortener built with Next.js, PostgreSQL (Neon), Prisma, an
 
 ## Features
 
+- 🏠 Stunning landing page with feature showcase
 - 🔗 Create short links with custom or auto-generated codes
 - 📊 Track click statistics and last clicked timestamps
 - 🔐 Secure JWT-based authentication
@@ -12,6 +13,7 @@ A modern, secure URL shortener built with Next.js, PostgreSQL (Neon), Prisma, an
 - ⚡ Real-time click tracking
 - 🗑️ Delete links functionality
 - 📱 Responsive design
+- 🚀 Production-ready with Vercel deployment
 
 ## Tech Stack
 
@@ -146,11 +148,13 @@ tinylink/
 │   │   │       └── route.js
 │   │   ├── code/
 │   │   │   └── [code]/        # Stats page
+│   │   ├── dashboard/         # Dashboard page (authenticated)
+│   │   ├── landing/           # Landing page (public)
 │   │   ├── login/             # Login page
 │   │   ├── register/          # Register page
 │   │   ├── [code]/            # Redirect route
 │   │   ├── layout.js
-│   │   └── page.js            # Dashboard
+│   │   └── page.js            # Root redirect handler
 │   ├── components/
 │   │   ├── CreateLinkForm.js
 │   │   └── LinkList.js
@@ -255,6 +259,3 @@ npx prisma migrate deploy
 
 MIT
 
-## Author
-
-Built with ❤️ using Next.js and Vercel
